@@ -165,7 +165,7 @@ void setup() {
 
   SPIFFS.begin();
 
-  if (!bmp.begin()) {
+  if (!bmp180.begin()) {
     Serial.println("Errore BMP180!");
     while (1);
   }
@@ -193,7 +193,7 @@ void loop() {
   if (now - lastRead >= READ_INTERVAL) {
     lastRead = now;
 
-    float p = bmp.readPressure() / 100.0;
+    float p = bmp180.readPressure() / 100.0;
 
     history[histIndex] = p;
     histIndex = (histIndex + 1) % HISTORY_SIZE;
